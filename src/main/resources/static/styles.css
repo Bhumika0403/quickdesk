@@ -938,3 +938,76 @@ body {
         font-size: 1.5rem;
     }
 } 
+/* --- New Grievance Form Grid --- */
+.ticket-form-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.ticket-form-grid .form-group {
+    margin-bottom: 0;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+    margin-top: 1.5rem;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 992px) {
+    .ticket-form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .ticket-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* --- New Grievance Form Grid --- */
+.ticket-form-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.ticket-form-grid .form-group {
+    margin-bottom: 0;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+    margin-top: 1.5rem;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+@media (max-width: 992px) {
+    .ticket-form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .ticket-form-grid {
+        grid-template-columns: 1fr;
+    }
+}

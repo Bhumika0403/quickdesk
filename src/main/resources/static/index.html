@@ -8,7 +8,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -34,7 +33,6 @@
         </div>
     </nav>
 
-    <!-- Auth Forms -->
     <div id="authContainer" class="auth-container">
         <div class="auth-box">
             <div class="auth-tabs">
@@ -42,7 +40,6 @@
                 <button class="auth-tab" data-tab="register">Register</button>
             </div>
             
-            <!-- Login Form -->
             <form id="loginForm" class="auth-form">
                 <h2>Welcome Back</h2>
                 <div class="form-group">
@@ -54,7 +51,6 @@
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
 
-            <!-- Register Form -->
             <form id="registerForm" class="auth-form" style="display: none;">
                 <h2>Create Account</h2>
                 <div class="form-group">
@@ -76,7 +72,7 @@
                 <div class="form-group" id="specializationsGroup" style="display: none;">
                     <label for="registerSpecializations">Specializations (comma-separated)</label>
                     <input type="text" id="registerSpecializations" placeholder="e.g., printer, computer, network">
-                    <small>Enter keywords that describe your expertise (e.g., printer, computer, network, software)</small>
+                    <small>Enter keywords that describe your expertise</small>
                 </div>
                 <div class="form-group" id="adminKeyGroup" style="display: none;">
                     <label for="registerAdminKey">Admin Key</label>
@@ -88,9 +84,7 @@
         </div>
     </div>
 
-    <!-- Main App Container -->
     <div id="appContainer" class="app-container" style="display: none;">
-        <!-- Dashboard Page -->
         <div id="dashboardPage" class="page active">
             <div class="page-header">
                 <h1>Dashboard</h1>
@@ -142,49 +136,117 @@
                 </div>
             </div>
 
-            <div class="tickets-container" id="ticketsContainer">
-                <!-- Tickets will be loaded here -->
-            </div>
-
-            <div class="pagination" id="pagination">
-                <!-- Pagination will be generated here -->
-            </div>
+            <div class="tickets-container" id="ticketsContainer"></div>
+            <div class="pagination" id="pagination"></div>
         </div>
 
-        <!-- Create Ticket Page -->
         <div id="createTicketPage" class="page">
             <div class="page-header">
-                <h1>Create New Ticket</h1>
+                <h1>New Grievance / Complaint</h1>
             </div>
             <div class="form-container">
                 <form id="createTicketForm" class="ticket-form">
-                    <div class="form-group">
-                        <label for="ticketSubject">Subject</label>
-                        <input type="text" id="ticketSubject" required>
+                    <div class="ticket-form-grid">
+                        
+                        <div class="form-group">
+                            <label>Complaint Area <span style="color:red;">*</span></label>
+                            <select id="ticketArea" required>
+                                <option value="">Select Area</option>
+                                <option value="Academic Area">Academic Area</option>
+                                <option value="Hostel Area">Hostel Area</option>
+                                <option value="Residential Area">Residential Area</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Related To <span style="color:red;">*</span></label>
+                            <select id="ticketRelatedTo" required>
+                                <option value="">Select Department</option>
+                                <option value="Civil/Construction">Civil / Construction</option>
+                                <option value="Electrical">Electrical</option>
+                                <option value="IT/Network">IT / Network / WiFi</option>
+                                <option value="Housekeeping">Housekeeping / Cleaning</option>
+                                <option value="Plumbing">Plumbing / Water</option>
+                                <option value="Carpentry">Carpentry / Furniture</option>
+                                <option value="Mess">Mess / Canteen</option>
+                                <option value="Security">Security</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Complaint Type <span style="color:red;">*</span></label>
+                            <input type="text" id="ticketComplaintType" placeholder="e.g., Fan not working, WiFi down" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Priority</label>
+                            <select id="ticketPriority">
+                                <option value="Normal">Normal</option>
+                                <option value="High">High</option>
+                                <option value="Urgent">Urgent</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Location Type <span style="color:red;">*</span></label>
+                            <select id="ticketLocationType" required onchange="updateLocations()">
+                                <option value="">Select Type</option>
+                                <option value="Academic">Academic Block</option>
+                                <option value="Hostel">Hostel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Block / Hostel <span style="color:red;">*</span></label>
+                            <select id="ticketLocation" required>
+                                <option value="">Select Location First</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Floor</label>
+                            <select id="ticketFloor">
+                                <option value="">Select Floor</option>
+                                <option value="Ground Floor">Ground Floor</option>
+                                <option value="1st Floor">1st Floor</option>
+                                <option value="2nd Floor">2nd Floor</option>
+                                <option value="3rd Floor">3rd Floor</option>
+                                <option value="4th Floor">4th Floor</option>
+                                <option value="5th Floor">5th Floor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Room No <span style="color:red;">*</span></label>
+                            <input type="text" id="ticketRoomNo" placeholder="e.g., 204" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Available Time</label>
+                            <input type="time" id="ticketAvailableTime">
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile Number <span style="color:red;">*</span></label>
+                            <input type="tel" id="ticketMobile" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Attachment</label>
+                            <input type="file" id="ticketAttachment">
+                        </div>
+                        
+                        <div class="form-group" style="display: none;">
+                            <select id="ticketCategory"></select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="ticketCategory">Category</label>
-                        <select id="ticketCategory" required>
-                            <option value="">Select Category</option>
-                        </select>
+
+                    <div class="form-group full-width">
+                        <label>Complaint Detail / Description <span style="color:red;">*</span></label>
+                        <textarea id="ticketDescription" rows="4" placeholder="Describe your issue in detail..." required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="ticketDescription">Description</label>
-                        <textarea id="ticketDescription" rows="5" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="ticketAttachment">Attachment (Optional)</label>
-                        <input type="file" id="ticketAttachment">
-                    </div>
+
                     <div class="form-actions">
                         <button type="button" class="btn btn-secondary" onclick="showPage('dashboard')">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Create Ticket</button>
+                        <button type="submit" class="btn btn-success">Submit Grievance</button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <!-- My Tickets Page -->
         <div id="ticketsPage" class="page">
             <div class="page-header">
                 <h1>My Tickets</h1>
@@ -213,16 +275,10 @@
                 </div>
             </div>
 
-            <div class="tickets-container" id="myTicketsContainer">
-                <!-- My tickets will be loaded here -->
-            </div>
-
-            <div class="pagination" id="myTicketsPagination">
-                <!-- Pagination will be generated here -->
-            </div>
+            <div class="tickets-container" id="myTicketsContainer"></div>
+            <div class="pagination" id="myTicketsPagination"></div>
         </div>
 
-        <!-- Ticket Detail Page -->
         <div id="ticketDetailPage" class="page">
             <div class="page-header">
                 <button class="btn btn-secondary" onclick="showPage('dashboard')">
@@ -230,25 +286,9 @@
                 </button>
                 <h1 id="ticketDetailTitle">Ticket Details</h1>
             </div>
-            <div class="ticket-detail-container" id="ticketDetailContainer">
-                <!-- Ticket details will be loaded here -->
-            </div>
+            <div class="ticket-detail-container" id="ticketDetailContainer"></div>
         </div>
 
-        <!-- Notifications Page -->
-        <div id="notificationsPage" class="page">
-            <div class="page-header">
-                <button class="btn btn-secondary" onclick="showPage('dashboard')">
-                    <i class="fas fa-arrow-left"></i> Back
-                </button>
-                <h1>Notifications</h1>
-            </div>
-            <div class="notifications-container" id="notificationsContainer">
-                <!-- Notifications will be loaded here -->
-            </div>
-        </div>
-
-        <!-- Chat Page -->
         <div id="chatPage" class="page">
             <div class="page-header">
                 <button class="btn btn-secondary" onclick="showPage('dashboard')">
@@ -266,9 +306,7 @@
                         <span id="chatStatus" class="status-badge">Connecting...</span>
                     </div>
                 </div>
-                <div class="chat-messages" id="chatMessages">
-                    <!-- Messages will be loaded here -->
-                </div>
+                <div class="chat-messages" id="chatMessages"></div>
                 <div class="chat-input">
                     <textarea id="chatMessageInput" placeholder="Type your message..." rows="3"></textarea>
                     <button id="sendMessageBtn" class="btn btn-primary">
@@ -278,7 +316,6 @@
             </div>
         </div>
 
-        <!-- Admin Page -->
         <div id="adminPage" class="page">
             <div class="page-header">
                 <h1>Admin Panel</h1>
@@ -301,9 +338,7 @@
                                     <th>Created</th>
                                 </tr>
                             </thead>
-                            <tbody id="usersTableBody">
-                                <!-- Users will be loaded here -->
-                            </tbody>
+                            <tbody id="usersTableBody"></tbody>
                         </table>
                     </div>
                 </div>
@@ -318,22 +353,17 @@
                             <button type="submit" class="btn btn-primary">Add Category</button>
                         </div>
                     </form>
-                    <div class="categories-list" id="categoriesList">
-                        <!-- Categories will be loaded here -->
-                    </div>
+                    <div class="categories-list" id="categoriesList"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Loading Spinner -->
     <div id="loadingSpinner" class="loading-spinner" style="display: none;">
         <div class="spinner"></div>
     </div>
-
-    <!-- Toast Notifications -->
     <div id="toastContainer" class="toast-container"></div>
 
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
